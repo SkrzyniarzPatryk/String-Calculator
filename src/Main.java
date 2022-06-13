@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        Add("/n,");
+
     }
-    public static int Add(String numbers) {
+    public static int Add(String numbers) throws Exception {
         if (!numbers.isEmpty()) {
             String delimiter = ",";
             if (numbers.startsWith("//")) {
@@ -14,11 +14,20 @@ public class Main {
             }
             int result = 0;
             ArrayList<String> numbersList = new ArrayList<>();
+            ArrayList<String> negativeNumbersList = new ArrayList<>();
             for (String number : numbers.split(delimiter)) {
                 numbersList.add(number);
             }
             for (String number : numbersList) {
-                result += Integer.parseInt(number);
+                int intNumber = Integer.parseInt(number);
+                if (intNumber < 0) {
+                    negativeNumbersList.add(number);
+                } else if (intNumber <= 1000){
+                    result += intNumber;
+                }
+            }
+            if (negativeNumbersList.size() > 0) {
+                throw new Exception("negatives not allowed : " + negativeNumbersList);
             }
             return result;
         }
