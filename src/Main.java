@@ -1,20 +1,24 @@
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
         Add("/n,");
     }
     public static int Add(String numbers) {
         if (!numbers.isEmpty()) {
-            String[] numbersArray = numbers.split(",");
+            String delimiter = ",";
+            if (numbers.startsWith("//")) {
+                int separatorIndex = numbers.indexOf('\n');
+                delimiter = numbers.substring(2, separatorIndex);
+                numbers = numbers.substring(separatorIndex + 1);
+            }
             int result = 0;
-            for (int i = 0; i < numbersArray.length; i++) {
-                String[] numbersArrayNewLine = numbersArray[i].split("\n");
-                if(numbersArrayNewLine.length > 1) {
-                    for (String number : numbersArrayNewLine) {
-                        result += Integer.parseInt(number);
-                    }
-                } else {
-                    result += Integer.parseInt(numbersArray[i]);
-                }
+            ArrayList<String> numbersList = new ArrayList<>();
+            for (String number : numbers.split(delimiter)) {
+                numbersList.add(number);
+            }
+            for (String number : numbersList) {
+                result += Integer.parseInt(number);
             }
             return result;
         }
