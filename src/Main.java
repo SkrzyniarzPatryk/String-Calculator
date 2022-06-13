@@ -4,12 +4,11 @@ public class Main {
     public static int Add(String numbers) {
         if (!numbers.isEmpty()) {
             String[] numbersArray = numbers.split(",");
-            switch (numbersArray.length) {
-                case 1:
-                    return Integer.parseInt(numbersArray[0]);
-                case 2:
-                    return Integer.parseInt(numbersArray[0]) + Integer.parseInt(numbersArray[1]);
+            int result = 0;
+            for (int i = 0; i < numbersArray.length; i++) {
+                result += Integer.parseInt(numbersArray[i]);
             }
+            return result;
         }
         return 0;
     }

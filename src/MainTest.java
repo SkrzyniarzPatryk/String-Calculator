@@ -9,5 +9,7 @@ class MainTest {
         Assertions.assertEquals(0, Main.Add(""));
         Assertions.assertEquals(2, Main.Add("2"));
         Assertions.assertEquals(6, Main.Add("2,4"));
+        Assertions.assertEquals(35, Main.Add("2,4,10,19"));
+
     }
 }
